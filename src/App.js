@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import styled, {injectGlobal} from 'styled-components';
 import PageTemplate from './components/PageTemplate';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import modules from './modules';
 
 injectGlobal`
   body{
@@ -9,11 +12,15 @@ injectGlobal`
   }
 `
 
+const store = createStore(modules);
+
 class App extends Component {
 
     render() {
         return (
-            <PageTemplate />
+            <Provider store={store}>
+                <PageTemplate />
+            </Provider>
         );
     }
 }
